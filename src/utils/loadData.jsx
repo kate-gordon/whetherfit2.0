@@ -1,6 +1,6 @@
 export const loadData = (url) => {
-        const response = await fetch(url); 
-        const data = await response.json(); 
+        const response = fetch(url); 
+        const data = response.json(); 
         return data; 
     }
     
