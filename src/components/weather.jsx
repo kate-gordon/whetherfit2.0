@@ -36,14 +36,13 @@ class Weather extends Component {
         this.setState({ apparentTemp: apparentTemp, precip: precip });
     };
 
-    handleChange(e) {
-        console.log("e: ", e.target.zipcode);
-        this.setState({ zipcode: e.target.zipcode });
-    }
-
-    handleSubmit = e => {
+    handleSubmit = async e => {
         e.preventDefault();
-        console.log("zipcode: ", this.refs.zipcode.value);
+        const zipcode = this.refs.zipcode.value;
+        const coordinates = await this.getCoordinates(zipcode);
+        await this.getWeather(coordinates);
+
+        this.setState({ zipcode });
     };
 
     render() {
@@ -73,10 +72,7 @@ class Weather extends Component {
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
-                <WeatherInfoToday 
-                    apparentTemp={apparentTemp}
-                    precip={precip}
-                />
+                <WeatherInfoToday apparentTemp={apparentTemp} precip={precip} />
             </>
         );
     }
