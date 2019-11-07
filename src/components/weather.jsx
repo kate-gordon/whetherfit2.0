@@ -14,6 +14,7 @@ class Weather extends Component {
         await this.getWeather(coordinates);
     }
 
+
     getCoordinates = async zipcode => {
         const zip = zipcode;
         const data = await loadData(
@@ -36,14 +37,12 @@ class Weather extends Component {
         this.setState({ apparentTemp: apparentTemp, precip: precip });
     };
 
-    handleChange(e) {
-        console.log("e: ", e.target.zipcode);
-        this.setState({ zipcode: e.target.zipcode });
-    }
+  
 
     handleSubmit = e => {
         e.preventDefault();
         console.log("zipcode: ", this.refs.zipcode.value);
+        
     };
 
     render() {
