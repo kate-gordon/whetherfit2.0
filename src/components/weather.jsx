@@ -7,7 +7,8 @@ class Weather extends Component {
         weather: "Fetching weather data...",
         zipcode: 30342,
         apparentTemp: 0,
-        precip: 0
+        precip: 0,
+        outfits: 0
     };
 
     async componentDidMount() {
@@ -51,6 +52,7 @@ class Weather extends Component {
         const zipcode = this.state.zipcode;
         const apparentTemp = this.state.apparentTemp;
         const precip = this.state.precip;
+        const outfit = this.state.outfits;
 
         console.log(
             "zipcode is",
