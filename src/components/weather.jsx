@@ -14,6 +14,7 @@ class Weather extends Component {
         await this.getWeather(coordinates);
     }
 
+
     getCoordinates = async zipcode => {
         const zip = zipcode;
         const data = await loadData(
