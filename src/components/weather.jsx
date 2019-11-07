@@ -6,7 +6,8 @@ class Weather extends Component {
         weather: "Fetching weather data...",
         zipcode: 30342,
         apparentTemp: 0,
-        precip: 0
+        precip: 0,
+        outfits: ""
     };
 
     async componentDidMount() {
@@ -34,7 +35,19 @@ class Weather extends Component {
         const apparentTemp = data.currently.apparentTemperature;
         const precip = data.currently.precipProbability;
 
-        this.setState({ apparentTemp: apparentTemp, precip: precip });
+        let myOutfit = 0;
+
+        if (apparentTemp >= 80) myOutfit = 'hot';
+        if (apparentTemp >= 65 && apparentTemp < 80) myOutfit = 'warm';
+        if (apparentTemp >= 45 && apparentTemp < 64) myOutfit = 'chilly';
+        if (apparentTemp >= 25 && apparentTemp < 44) myOutfit = 'cold';
+        if (apparentTemp < 25) myOutfit = 'wintry';
+
+        this.setState({
+            apparentTemp: apparentTemp,
+            precip: precip,
+            outfits: myOutfit
+        });
     };
 
     handleSubmit = async e => {
@@ -50,6 +63,7 @@ class Weather extends Component {
         const zipcode = this.state.zipcode;
         const apparentTemp = this.state.apparentTemp;
         const precip = this.state.precip;
+        const outfit = this.state.outfits;
 
         console.log(
             "zipcode is",
@@ -57,7 +71,9 @@ class Weather extends Component {
             "apparent temp",
             apparentTemp,
             "precip chance",
-            precip
+            precip,
+            "outfit",
+            outfit
         );
 
         return (
