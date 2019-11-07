@@ -6,23 +6,23 @@ class Weather extends Component {
 
     state = {
         weather: "Fetching weather data...",
-        zipcode: "",
+        zipcode: 30326,
         
     };
 
     async componentDidMount() {  
-        const coordinates = await this.getCoordinates();
+        const coordinates = await this.getCoordinates(this.state.zipcode);
         this.getWeather(coordinates);
     }
 
     getCoordinates = async zipcode => {
-        const zip = "11218"
+        
         const data =  await loadData(
-            `https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=${zip}&facet=state&facet=timezone&facet=dst`
+            `https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=${zipcode}&facet=state&facet=timezone&facet=dst`
         );   
        const coordinates = data.records[0].geometry.coordinates;
        console.log(coordinates);
-       return coordinates
+
     };
     
     getWeather = async coordinates => {
@@ -31,23 +31,20 @@ class Weather extends Component {
         const data = await loadData(
             `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/1387466109e308e8de851d6f09a87c39/${lat},${lon}`
         );
-        const apparentTemp = data.currently.apparentTemperature; 
+        const todayTemp = data.currently.apparentTemperature; 
         const precip = data.currently.precipProbability; 
-        console.log(apparentTemp, precip);
-        return apparentTemp;
-        return precip; 
+        console.log(todayTemp, precip);
+        return (todayTemp, precip);
     }
 
-    handleChange(e) {
-        
-        console.log("e: ", e.target.zipcode);
+    handleChange = e => {
         this.setState({zipcode: e.target.zipcode});
         
     }
 
     handleSubmit = e => {
         e.preventDefault();
-        // this.getCoordinates(this.props.zipcode);
+        this.getCoordinates(this.refs.zipcode.value);
         console.log("zipcode: ", this.refs.zipcode.value);
     }
 
