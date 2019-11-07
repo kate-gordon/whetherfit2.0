@@ -47,7 +47,7 @@ class Weather extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        // this.getWeather(this.props.coordinates);
+        // this.getCoordinates(this.props.zipcode);
         console.log("zipcode: ", this.refs.zipcode.value);
     }
 
