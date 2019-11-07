@@ -21,7 +21,7 @@ class Weather extends Component {
             `https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=${zip}&facet=state&facet=timezone&facet=dst`
         );
         const coordinates = data.records[0].geometry.coordinates;
-        console.log("coordinates are", coordinates);
+       
         return coordinates;
     };
 
