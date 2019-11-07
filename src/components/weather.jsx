@@ -2,17 +2,18 @@ import React, { Component } from "react";
 import { loadData } from "../utils/loadData";
 
 
-
 class Weather extends Component {
+
     state = {
-        weather: "Fetching weather data..."
+        weather: "Fetching weather data...",
+        zipcode: "",
+        
     };
 
     async componentDidMount() {  
         const coordinates = await this.getCoordinates();
         this.getWeather(coordinates);
     }
-
 
     getCoordinates = async zipcode => {
         const zip = "11218"
@@ -37,19 +38,32 @@ class Weather extends Component {
         return precip; 
     }
 
+    handleChange(e) {
+        
+        console.log("e: ", e.target.zipcode);
+        this.setState({zipcode: e.target.zipcode});
+        
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+        // this.getWeather(this.props.coordinates);
+        console.log("zipcode: ", this.refs.zipcode.value);
+    }
+
     render() {
-        // const { weather } = this.state;s
-        // const category = this.props.match.params.category_name;  
+        const { weather } = this.state;
+        const zipcode = this.props.coordinates;
 
         return (
-            <>
-                {/* <Button isColor="dark" isSize="medium" onClick={e => this.handleClick(e)}>
-                    Get Another Quote from the {category} Category!
-                </Button> */}
-            </>
+            <form onSubmit={this.handleSubmit}>
+                <label>
+                    <input type="text" zipcode={zipcode} ref="zipcode" placeholder="Enter zipcode" />
+                </label>
+                    <input type="submit" value="Submit" />            
+            </form>
         );
     }
 }
 
 export default Weather;
-    
