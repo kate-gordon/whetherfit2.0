@@ -1,10 +1,13 @@
 import React from "react";
 
 function WeatherInfoToday(props) {
+    const apparentTemp = props.apparentTemp;
+    const precip = props.precip
+    
     return (
         <>
-            <p>It currently feels like {this.props.todayTemp}</p>
-            <p>Precipitation Chance: {this.props.precip}</p>
+            <p>It currently feels like {apparentTemp}</p>
+            <p>Precipitation Chance: {precip}</p>
         </>
     );
 }
