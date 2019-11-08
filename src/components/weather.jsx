@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { loadData } from "../utils/loadData";
 import WeatherInfoToday from "./weatherInfoToday";
+import WeatherInfoTomorrow from "./weatherInfoTomorrow";
 import GetOutfit from "./clothing";
 
 class Weather extends Component {
@@ -9,7 +10,10 @@ class Weather extends Component {
         zipcode: 30342,
         apparentTemp: 0,
         precip: 0,
-        outfits: ""
+        outfits: "",
+        tmrwTempHigh: 0,
+        tmrwTempLow: 0,
+        tmrwPrecipChance: 0
     };
 
     async componentDidMount() {
@@ -17,14 +21,13 @@ class Weather extends Component {
         await this.getWeather(coordinates);
     }
 
-
     getCoordinates = async zipcode => {
         const zip = zipcode;
         const data = await loadData(
             `https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=${zip}&facet=state&facet=timezone&facet=dst`
         );
         const coordinates = data.records[0].geometry.coordinates;
-       
+
         return coordinates;
     };
 
@@ -37,18 +40,25 @@ class Weather extends Component {
         const apparentTemp = data.currently.apparentTemperature;
         const precip = data.currently.precipProbability;
 
+        const tmrwTempHighValue = data.daily.data[1].apparentTemperatureHigh;
+        const tmrwTempLowValue = data.daily.data[1].apparentTemperatureLow;
+        const tmrwRainChanceValue = data.daily.data[1].precipProbability * 100;
+
         let myOutfit = 0;
 
-        if (apparentTemp >= 80) myOutfit = 'hot';
-        if (apparentTemp >= 65 && apparentTemp < 80) myOutfit = 'warm';
-        if (apparentTemp >= 45 && apparentTemp < 64) myOutfit = 'chilly';
-        if (apparentTemp >= 25 && apparentTemp < 44) myOutfit = 'cold';
-        if (apparentTemp < 25) myOutfit = 'wintry';
+        if (apparentTemp >= 80) myOutfit = "hot";
+        if (apparentTemp >= 65 && apparentTemp < 80) myOutfit = "warm";
+        if (apparentTemp >= 45 && apparentTemp < 64) myOutfit = "chilly";
+        if (apparentTemp >= 25 && apparentTemp < 44) myOutfit = "cold";
+        if (apparentTemp < 25) myOutfit = "wintry";
 
         this.setState({
             apparentTemp: apparentTemp,
             precip: precip,
-            outfits: myOutfit
+            outfits: myOutfit,
+            tmrwTempHigh: tmrwTempHighValue,
+            tmrwTempLow: tmrwTempLowValue,
+            tmrwPrecipChance: tmrwRainChanceValue
         });
     };
 
@@ -69,6 +79,9 @@ class Weather extends Component {
         const apparentTemp = this.state.apparentTemp;
         const precip = this.state.precip;
         const outfit = this.state.outfits;
+        const tmrwTempHigh = this.state.tmrwTempHigh;
+        const tmrwTempLow = this.state.tmrwTempLow;
+        const tmrwPrecipChance = this.state.tmrwPrecipChance;
 
         // console.log(
         //     "zipcode is",
@@ -96,6 +109,11 @@ class Weather extends Component {
                 </form>
                 <WeatherInfoToday apparentTemp={apparentTemp} precip={precip} />
                 <GetOutfit outfit={outfit} />
+                <WeatherInfoTomorrow
+                    tmrwTempHigh={tmrwTempHigh}
+                    tmrwTempLow={tmrwTempLow}
+                    tmrwPrecipChance={tmrwPrecipChance}
+                />
             </>
         );
     }
