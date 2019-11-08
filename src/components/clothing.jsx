@@ -9,6 +9,7 @@ import sweatpants from "../images/sweatpants.png";
 import blackjacket from "../images/blackjacket.png";
 
 
+
 function GetOutfit(props) {
     const outfits = {
         hot: [

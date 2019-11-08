@@ -3,7 +3,7 @@ import { loadData } from "../utils/loadData";
 import WeatherInfoToday from "./weatherInfoToday";
 import WeatherInfoTomorrow from "./weatherInfoTomorrow";
 import GetOutfit from "./clothing";
-
+import '../App.css';
 class Weather extends Component {
     state = {
         weather: "Fetching weather data...",
@@ -74,6 +74,14 @@ class Weather extends Component {
         this.setState({ zipcode });
     };
 
+    // My Oufit Function 
+
+    myOutfit = () => {
+      console.log("Outfit here"); 
+      return
+    }
+
+
     render() {
         const zipcode = this.state.zipcode;
         const apparentTemp = this.state.apparentTemp;
@@ -83,20 +91,21 @@ class Weather extends Component {
         const tmrwTempLow = this.state.tmrwTempLow;
         const tmrwPrecipChance = this.state.tmrwPrecipChance;
 
-        // console.log(
-        //     "zipcode is",
-        //     zipcode,
-        //     "apparent temp",
-        //     apparentTemp,
-        //     "precip chance",
-        //     precip,
-        //     "outfit",
-        //     outfit
-        // );
+
+        console.log(
+            "zipcode is",
+            zipcode,
+            "apparent temp",
+            apparentTemp,
+            "precip chance",
+            precip,
+           
+        );
 
         return (
             <>
-                <form onSubmit={this.handleSubmit}>
+            
+                <form className="form" onSubmit={this.handleSubmit}>
                     <label>
                         <input
                             type="text"
@@ -105,18 +114,23 @@ class Weather extends Component {
                             placeholder="Enter zipcode"
                         />
                     </label>
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" className="btn" />
                 </form>
+        
+            <div className="container">
                 <WeatherInfoToday apparentTemp={apparentTemp} precip={precip} />
                 <GetOutfit outfit={outfit} />
+            </div>
+            <div className="container">
                 <WeatherInfoTomorrow
                     tmrwTempHigh={tmrwTempHigh}
                     tmrwTempLow={tmrwTempLow}
                     tmrwPrecipChance={tmrwPrecipChance}
                 />
+            </div>
             </>
-        );
-    }
+        )
+    };
 }
 
 export default Weather;
