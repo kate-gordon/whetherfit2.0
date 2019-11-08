@@ -1,17 +1,17 @@
 import React from "react";
 
 function WeatherInfoTomorrow(props) {
-    const tmrwTempHigh = props.tmrwTempHigh;
-    const tmrwTempLow = props.tmrwTempLow;
-    const tmrwPrecipChance = props.tmrwPrecipChance;
+    const tmrwTempHigh = Math.round(props.tmrwTempHigh);
+    const tmrwTempLow = Math.round(props.tmrwTempLow);
+    const tmrwPrecipChance = Math.round(props.tmrwPrecipChance);
 
     return (
         <>
             <div>
-                <h1>Wheather Tomorrow</h1>
-                <p>Feels Like Temp High: {tmrwTempHigh}</p>
-                <p>Feels Like Temp Low: {tmrwTempLow}</p>
-                <p>Precipitation Chance: {tmrwPrecipChance}</p>
+                <h1>Weather Tomorrow</h1>
+                <p>Feels Like Temp High: {tmrwTempHigh}{'°F'}</p>
+                <p>Feels Like Temp Low: {tmrwTempLow}{'°F'}</p>
+                <p>Precipitation Chance: {tmrwPrecipChance}{'%'}</p>
             </div>
         </>
     );
