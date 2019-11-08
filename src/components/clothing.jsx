@@ -1,35 +1,45 @@
 import React from "react";
+import dress from "../images/dress.png";
+import shorts from "../images/shorts.png";
+import tshirt from "../images/whitetshirt.png";
+import grey from "../images/greytshirt.png";
+import sweatshirt from "../images/sweatshirt.png";
+import jeans from "../images/jeans.png";
+import sweatpants from "../images/sweatpants.png";
+import blackjacket from "../images/blackjacket.png";
+
+
 
 function GetOutfit(props) {
     const outfits = {
         hot: [
-            "../../public/images/shorts.png",
-            "../../public/images/whitetshirt.png",
-            "../../public/images/dress.png"
+            shorts,
+            tshirt,
+            dress
         ],
         warm: [
-            "../../public/images/greytshirt.png",
-            "../../public/images/jeans.png",
-            "../../public/images/dress.png",
-            "../../public/images/sweatshirt.png",
-            "../../public/images/shorts.png"
+            grey,
+            jeans,
+            dress,
+            sweatshirt,
+            shorts
         ],
         chilly: [
-            "../../public/images/whitetshirt.png",
-            "../../public/images/sweatpants.png",
-            "../../public/images/sweatshirt.png",
-            "../../publicimages/blackjacket.png",
-            "../../public/images/dress.png",
-            "../../public/images/jeans.png"
+            tshirt,
+            sweatpants,
+            sweatshirt,
+            blackjacket,
+            dress,
+            jeans
         ],
         cold: [
-            "../../public/images/greytshirt.png",
-            "../../public/images/jeans.png",
-            "../../public/images/coat.png",
-            "../../public/images/scarf.png",
-            "../../public/images/blackjacket.png"
+            grey,
+            jeans,
+            "coat",
+            "scarf",
+            blackjacket
         ],
-        wintry: ["../../public/images/freezing.png"]
+        wintry: ["./images/freezing.png"]
     };
 
     const condition = props.outfit;
