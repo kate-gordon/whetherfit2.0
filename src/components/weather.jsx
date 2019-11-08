@@ -69,7 +69,7 @@ class Weather extends Component {
         const zipcode = this.refs.zipcode.value;
         const coordinates = await this.getCoordinates(zipcode);
         await this.getWeather(coordinates);
-        await this.getOutfit(this.state.apparentTemp);
+        // await this.getOutfit(this.state.apparentTemp);
 
         this.setState({ zipcode });
     };
