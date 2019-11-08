@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { loadData } from "../utils/loadData";
 import WeatherInfoToday from "./weatherInfoToday";
+import GetOutfit from "./clothing";
+import { returnStatement } from "@babel/types";
+
 class Weather extends Component {
     state = {
         weather: "Fetching weather data...",
@@ -59,11 +62,19 @@ class Weather extends Component {
         this.setState({ zipcode });
     };
 
+    // My Oufit Function 
+
+    myOutfit = () => {
+      console.log("Outfit here"); 
+      return
+    }
+
+
     render() {
         const zipcode = this.state.zipcode;
         const apparentTemp = this.state.apparentTemp;
         const precip = this.state.precip;
-        const outfit = this.state.outfits;
+        
 
         console.log(
             "zipcode is",
@@ -72,8 +83,7 @@ class Weather extends Component {
             apparentTemp,
             "precip chance",
             precip,
-            "outfit",
-            outfit
+           
         );
 
         return (
@@ -90,9 +100,10 @@ class Weather extends Component {
                     <input type="submit" value="Submit" />
                 </form>
                 <WeatherInfoToday apparentTemp={apparentTemp} precip={precip} />
+                <GetOutfit myOutfit={this.myOutfit} /> 
             </>
-        );
-    }
+        )
+    };
 }
 
 export default Weather;
