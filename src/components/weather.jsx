@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { loadData } from "../utils/loadData";
 import WeatherInfoToday from "./weatherInfoToday";
+import GetOutfit from "./clothing";
 
 class Weather extends Component {
     state = {
@@ -8,7 +9,7 @@ class Weather extends Component {
         zipcode: 30342,
         apparentTemp: 0,
         precip: 0,
-        outfits: 0
+        outfits: ""
     };
 
     async componentDidMount() {
@@ -23,7 +24,7 @@ class Weather extends Component {
             `https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=${zip}&facet=state&facet=timezone&facet=dst`
         );
         const coordinates = data.records[0].geometry.coordinates;
-        console.log("coordinates are", coordinates);
+       
         return coordinates;
     };
 
@@ -36,14 +37,29 @@ class Weather extends Component {
         const apparentTemp = data.currently.apparentTemperature;
         const precip = data.currently.precipProbability;
 
-        this.setState({ apparentTemp: apparentTemp, precip: precip });
+        let myOutfit = 0;
+
+        if (apparentTemp >= 80) myOutfit = 'hot';
+        if (apparentTemp >= 65 && apparentTemp < 80) myOutfit = 'warm';
+        if (apparentTemp >= 45 && apparentTemp < 64) myOutfit = 'chilly';
+        if (apparentTemp >= 25 && apparentTemp < 44) myOutfit = 'cold';
+        if (apparentTemp < 25) myOutfit = 'wintry';
+
+        this.setState({
+            apparentTemp: apparentTemp,
+            precip: precip,
+            outfits: myOutfit
+        });
     };
+
+    
 
     handleSubmit = async e => {
         e.preventDefault();
         const zipcode = this.refs.zipcode.value;
         const coordinates = await this.getCoordinates(zipcode);
         await this.getWeather(coordinates);
+        await this.getOutfit(this.state.apparentTemp);
 
         this.setState({ zipcode });
     };
@@ -54,14 +70,16 @@ class Weather extends Component {
         const precip = this.state.precip;
         const outfit = this.state.outfits;
 
-        console.log(
-            "zipcode is",
-            zipcode,
-            "apparent temp",
-            apparentTemp,
-            "precip chance",
-            precip
-        );
+        // console.log(
+        //     "zipcode is",
+        //     zipcode,
+        //     "apparent temp",
+        //     apparentTemp,
+        //     "precip chance",
+        //     precip,
+        //     "outfit",
+        //     outfit
+        // );
 
         return (
             <>
@@ -77,6 +95,7 @@ class Weather extends Component {
                     <input type="submit" value="Submit" />
                 </form>
                 <WeatherInfoToday apparentTemp={apparentTemp} precip={precip} />
+                <GetOutfit outfit={outfit} />
             </>
         );
     }
