@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { loadData } from "../utils/loadData";
 import WeatherInfoToday from "./weatherInfoToday";
 import WeatherInfoTomorrow from "./weatherInfoTomorrow";
+import GetOutfit from "./clothing";
 
 class Weather extends Component {
     state = {
@@ -104,6 +105,7 @@ class Weather extends Component {
                     <input type="submit" value="Submit" />
                 </form>
                 <WeatherInfoToday apparentTemp={apparentTemp} precip={precip} />
+                <GetOutfit outfit={outfit} />
                 <WeatherInfoTomorrow
                     tmrwTempHigh={tmrwTempHigh}
                     tmrwTempLow={tmrwTempLow}
