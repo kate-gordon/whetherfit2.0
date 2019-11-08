@@ -1,34 +1,43 @@
 import React from "react";
+import dress from "../images/dress.png";
+import shorts from "../images/shorts.png";
+import tshirt from "../images/whitetshirt.png";
+import grey from "../images/greytshirt.png";
+import sweatshirt from "../images/sweatshirt.png";
+import jeans from "../images/jeans.png";
+import sweatpants from "../images/sweatpants.png";
+import blackjacket from "../images/blackjacket.png";
+
 
 
 function GetOutfit(props) {
     const outfits = {
         hot: [
-            "./images/shorts.png",
-            "./images/whitetshirt.png",
-            "./images/dress.png"
+            shorts,
+            tshirt,
+            dress
         ],
         warm: [
-            "./images/greytshirt.png",
-            "./images/jeans.png",
-            "./images/dress.png",
-            "./images/sweatshirt.png",
-            "./images/shorts.png"
+            grey,
+            jeans,
+            dress,
+            sweatshirt,
+            shorts
         ],
         chilly: [
-            ".images/whitetshirt.png",
-            "./images/sweatpants.png",
-            "./images/sweatshirt.png",
-            "./images/blackjacket.png",
-            "./images/dress.png",
-            "./images/jeans.png"
+            tshirt,
+            sweatpants,
+            sweatshirt,
+            blackjacket,
+            dress,
+            jeans
         ],
         cold: [
-            "./images/greytshirt.png",
-            "./images/jeans.png",
-            "./images/coat.png",
-            "./images/scarf.png",
-            "./images/blackjacket.png"
+            grey,
+            jeans,
+            "coat",
+            "scarf",
+            blackjacket
         ],
         wintry: ["./images/freezing.png"]
     };

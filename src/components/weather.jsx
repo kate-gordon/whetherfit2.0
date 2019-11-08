@@ -62,11 +62,14 @@ class Weather extends Component {
         });
     };
 
+    
+
     handleSubmit = async e => {
         e.preventDefault();
         const zipcode = this.refs.zipcode.value;
         const coordinates = await this.getCoordinates(zipcode);
         await this.getWeather(coordinates);
+        await this.getOutfit(this.state.apparentTemp);
 
         this.setState({ zipcode });
     };
@@ -87,6 +90,7 @@ class Weather extends Component {
         const tmrwTempHigh = this.state.tmrwTempHigh;
         const tmrwTempLow = this.state.tmrwTempLow;
         const tmrwPrecipChance = this.state.tmrwPrecipChance;
+
 
         console.log(
             "zipcode is",
