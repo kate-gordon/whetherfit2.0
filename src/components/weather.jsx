@@ -3,7 +3,7 @@ import { loadData } from "../utils/loadData";
 import WeatherInfoToday from "./weatherInfoToday";
 import WeatherInfoTomorrow from "./weatherInfoTomorrow";
 import GetOutfit from "./clothing";
-
+import '../App.css';
 class Weather extends Component {
     state = {
         weather: "Fetching weather data...",
@@ -100,7 +100,8 @@ class Weather extends Component {
 
         return (
             <>
-                <form onSubmit={this.handleSubmit}>
+            
+                <form className="form" onSubmit={this.handleSubmit}>
                     <label>
                         <input
                             type="text"
@@ -109,15 +110,20 @@ class Weather extends Component {
                             placeholder="Enter zipcode"
                         />
                     </label>
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" className="btn" />
                 </form>
+        
+            <div className="container">
                 <WeatherInfoToday apparentTemp={apparentTemp} precip={precip} />
                 <GetOutfit outfit={outfit} />
+            </div>
+            <div className="container">
                 <WeatherInfoTomorrow
                     tmrwTempHigh={tmrwTempHigh}
                     tmrwTempLow={tmrwTempLow}
                     tmrwPrecipChance={tmrwPrecipChance}
                 />
+            </div>
             </>
         )
     };

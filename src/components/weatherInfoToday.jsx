@@ -6,7 +6,7 @@ function WeatherInfoToday(props) {
     
     return (
         <>
-            <h1>Wheather Today</h1>
+            <h1>Weather Today</h1>
             <p>It currently feels like {apparentTemp}</p>
             <p>Precipitation Chance: {precip}</p>
         </>

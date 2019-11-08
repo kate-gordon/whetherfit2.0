@@ -1,35 +1,36 @@
-import React, { Component } from "react";
+import React from "react";
+
 
 function GetOutfit(props) {
     const outfits = {
         hot: [
-            "../../public/images/shorts.png",
-            "../../public/images/whitetshirt.png",
-            "../../public/images/dress.png"
+            "./images/shorts.png",
+            "./images/whitetshirt.png",
+            "./images/dress.png"
         ],
         warm: [
-            "../../public/images/greytshirt.png",
-            "../../public/images/jeans.png",
-            "../../public/images/dress.png",
-            "../../public/images/sweatshirt.png",
-            "../../public/images/shorts.png"
+            "./images/greytshirt.png",
+            "./images/jeans.png",
+            "./images/dress.png",
+            "./images/sweatshirt.png",
+            "./images/shorts.png"
         ],
         chilly: [
-            "../../public/images/whitetshirt.png",
-            "../../public/images/sweatpants.png",
-            "../../public/images/sweatshirt.png",
-            "../../publicimages/blackjacket.png",
-            "../../public/images/dress.png",
-            "../../public/images/jeans.png"
+            ".images/whitetshirt.png",
+            "./images/sweatpants.png",
+            "./images/sweatshirt.png",
+            "./images/blackjacket.png",
+            "./images/dress.png",
+            "./images/jeans.png"
         ],
         cold: [
-            "../../public/images/greytshirt.png",
-            "../../public/images/jeans.png",
-            "../../public/images/coat.png",
-            "../../public/images/scarf.png",
-            "../../public/images/blackjacket.png"
+            "./images/greytshirt.png",
+            "./images/jeans.png",
+            "./images/coat.png",
+            "./images/scarf.png",
+            "./images/blackjacket.png"
         ],
-        wintry: ["../../public/images/freezing.png"]
+        wintry: ["./images/freezing.png"]
     };
 
     const condition = props.outfit;
